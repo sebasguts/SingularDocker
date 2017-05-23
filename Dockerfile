@@ -11,7 +11,7 @@ RUN apt-get update -qq \
 RUN adduser --quiet --shell /bin/bash --gecos "Singular user,101,," --disabled-password singular \
     && adduser singular sudo \
     && chown -R singular:singular /home/singular/ \
-    && echo 'ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
+    && echo 'singular ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 USER singular
 ENV HOME /home/singular
