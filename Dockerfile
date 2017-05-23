@@ -4,13 +4,14 @@ MAINTAINER Sebastian Gutsche <sebastian.gutsche@gmail.com>
 
 RUN apt-get update -qq \
     && apt-get -qq install -y \
-                              build-essentials m4 libreadline6-dev libncurses5-dev wget unzip libgmp3-dev cmake \
+                              build-essential m4 libreadline6-dev libncurses5-dev wget unzip libgmp3-dev cmake \
                               autoconf autogen libtool libreadline6-dev libglpk-dev \
-                              libmpfr-dev libcdd-dev libntl-dev git \
-    && adduser --quiet --shell /bin/bash --gecos "Singular user,101,," --disabled-password singular \
+                              libmpfr-dev libcdd-dev libntl-dev git sudo
+
+RUN adduser --quiet --shell /bin/bash --gecos "Singular user,101,," --disabled-password singular \
     && adduser singular sudo \
     && chown -R singular:singular /home/singular/ \
-    && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
+    && echo 'ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
 
 USER singular
 ENV HOME /home/singular
